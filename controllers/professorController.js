@@ -95,12 +95,19 @@ const getProjectEvaluations = async (req, res) => {
       })
     );
 
+    // Calculate project average grade
+    const gradesWithValue = evaluationData.filter(e => e.finalGrade !== null);
+    const projectAverage = gradesWithValue.length > 0 
+      ? (gradesWithValue.reduce((sum, e) => sum + parseFloat(e.finalGrade), 0) / gradesWithValue.length).toFixed(2)
+      : null;
+
     res.json({
       project: {
         id: project.id,
         title: project.title,
         createdBy: project.creator?.fullName,
       },
+      projectAverage,
       evaluations: evaluationData,
     });
   } catch (error) {
