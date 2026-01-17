@@ -33,7 +33,7 @@ const Evaluation = (sequelize) => {
 
     // Anonymous grade (1-10 with up to 2 decimal places)
     score: {
-      type: DataTypes.DECIMAL(3, 2),
+      type: DataTypes.DECIMAL(4, 2),
       allowNull: false,
       validate: {
         min: 1,
