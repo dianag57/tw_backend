@@ -45,7 +45,7 @@ const getUserProjects = async (req, res) => {
       include: [{
         model: Deliverable,
         as: 'Deliverables',
-        attributes: ['id', 'title', 'dueDate', 'status'],
+        attributes: ['id', 'title', 'description', 'dueDate', 'status', 'videoUrl', 'serverUrl'],
       }],
       order: [['createdAt', 'DESC']],
     });
