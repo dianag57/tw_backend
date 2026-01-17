@@ -6,23 +6,23 @@ let sequelize;
 
 if (process.env.DATABASE_URL) {
   // Production: Use PostgreSQL connection string
+  console.log('Using PostgreSQL database from DATABASE_URL');
   sequelize = new Sequelize(process.env.DATABASE_URL, {
-    dialect: 'postgres',
-    protocol: 'postgres',
+    logging: false,
     dialectOptions: {
       ssl: {
         require: true,
         rejectUnauthorized: false,
       },
     },
-    logging: false,
   });
 } else {
   // Development: Use SQLite
+  console.log('Using SQLite database');
   sequelize = new Sequelize({
     dialect: 'sqlite',
     storage: path.join(__dirname, '../database.sqlite'),
-    logging: false, // Set to console.log to see SQL queries
+    logging: false,
   });
 }
 
