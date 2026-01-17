@@ -46,6 +46,11 @@ const getUserProjects = async (req, res) => {
         model: Deliverable,
         as: 'Deliverables',
         attributes: ['id', 'title', 'description', 'dueDate', 'status', 'videoUrl', 'serverUrl'],
+        include: [{
+          model: require('../models').JuryAssignment,
+          as: 'JuryAssignments',
+          attributes: ['id'],
+        }],
       }],
       order: [['createdAt', 'DESC']],
     });
