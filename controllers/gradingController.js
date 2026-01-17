@@ -41,6 +41,7 @@ const getJuryAssignments = async (req, res) => {
       order: [['createdAt', 'DESC']],
     });
 
+    console.log(`Found ${assignments.length} jury assignments for user ${juryMemberId}`);
     res.json({ assignments });
   } catch (error) {
     console.error('Get jury assignments error:', error);
